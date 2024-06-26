@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block title %}
+<style>
+    body {
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-color: #ffffff;
+        position: relative;
+        z-index: 1;
+    }
+
+    .content {
+        position: relative;
+        z-index: 2;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        color: #333333;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        function changeBackground() {
+            $.get('/get_image', function(imageUrl) {
+                $('body').css('background-image', 'url(' + imageUrl + ')');
+            });
+        }
+
+        changeBackground();
+
+        setInterval(changeBackground, 30 * 1000);
+    });
+</script>
+<title> Login. </title>
+{% endblock %}
+
+
+{% block main %}
+
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col">
+                <p style="font-family: 'HeroFont', sans-serif; font-size: 400%; color: transparent; -webkit-text-stroke: 0.5px black; display:inline">Sustain</p>
+                <p style="font-family: 'HeroFont', sans-serif; font-size: 350%; text-align: left; display: inline">the sound of you</p>
+                <p style="font-family: sanserif ;font-size:400%; display: inline">!</p>
+                <br>
+                <p  style="font-family: 'HeroFont', sans-serif; font-size: 125%; text-align: left; display: inline">Conserve your music profile</p>
+            </div>
+            <div class="col">
+
+            </div>
+            <div class="col">
+                <form action='/login' method="post">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Username/Email address</label>
+                        <input name="email" type="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" autocomplete="off">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <p style="display: inline"> Don't have an account? </p>
+                <a href="/register">Register</a>
+                {% if error %}
+                    <p style="color: red">{{error}}</p>
+                {% else %}
+                    <br>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

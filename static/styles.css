@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'HeroFont';
+    src: url('/static/assets/fonts/elegant.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Porcine';
+    src: url('/static/assets/fonts/porcine.ttf') format('truetype');
+}
+
+.row {
+    height: 45vw!important;
+}

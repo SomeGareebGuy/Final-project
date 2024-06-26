@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    <style>
+        body {
+            /* Set background image to cover entire viewport */
+            background-size: cover;
+            /* Center the background image */
+            background-position: center;
+            /* Fix background image */
+            background-attachment: fixed;
+            /* Set default background color */
+            background-color: #ffffff;
+            /* Change as needed */
+            /* Ensure content stays above the background image */
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Optional: Adjust other styles as needed */
+        /* For example, text color, font, etc. */
+        .content {
+            /* Add styles for your content */
+            position: relative;
+            z-index: 2;
+            /* Ensure content is above background */
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            color: #333333;
+            /* Text color */
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Function to fetch new background image every 5 minutes
+            function changeBackground() {
+                $.get('/get_image', function(imageUrl) {
+                    $('body').css('background-image', 'url(' + imageUrl + ')');
+                });
+            }
+
+            // Change background initially
+            changeBackground();
+
+            // Change background every 5 minutes
+            setInterval(changeBackground, 30 * 1000); // 2 minutes in milliseconds
+        });
+    </script>
+    <title> Login. </title>
+{% endblock %}
+
+{% block main %}
+
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col">
+                <p style="font-family: 'HeroFont', sans-serif; font-size: 400%; color: transparent; -webkit-text-stroke: 0.5px black; display:inline">Sustain</p>
+                <p style="font-family: 'HeroFont', sans-serif; font-size: 350%; text-align: left; display: inline">the sound of you</p>
+                <p style="font-family: sanserif ;font-size:400%; display: inline">!</p>
+                <br>
+                <p  style="font-family: 'HeroFont', sans-serif; font-size: 125%; text-align: left; display: inline">Conserve your music profile</p>
+            </div>
+            <div class="col">
+
+            </div>
+            <div class="col">
+                <form action='/register' method="post">
+                    <div class="mb-3">
+                        <label for="exampleInputUsername" class="form-label">Username</label>
+                        <input name="username" type="username" class="form-control" id="exampleInputUsername" autocomplete="off" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input name="email" type="email" class="form-control" id="exampleInputEmail1" autocomplete="off" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword2" class="form-label">Confirm Password</label>
+                        <input name="confirmation" type="password" class="form-control" id="exampleInputPassword2">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                    <br>
+                    <p style="display: inline"> Already have an account? </p>
+                    <a href="/login">Login.</a>
+                </form>
+                {% if error %}
+                    <p style="color: red">{{error}}</p>
+                {% else %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
