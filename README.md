@@ -1,4 +1,4 @@
-# YOUR PROJECT TITLE
+# Conservify
 #### Video Demo:  <URL HERE>
 #### Description:
 This project is a dynamic web application built using Flask and JavaScript. It allows users to register and log in, manage their Spotify playlists, and view detailed information about each playlist. The application features dynamic background changes, secure user authentication, and interaction with Spotify's Web API to retrieve playlist details.
